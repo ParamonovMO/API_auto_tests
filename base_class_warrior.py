@@ -1,5 +1,6 @@
 from base_class_person import Person
 
+
 class Warrior(Person):
     """Создаем класс война"""
 
@@ -9,7 +10,7 @@ class Warrior(Person):
         self.rage = 100
 
     def get_rage(self):
-        """Запросить вес человека"""
+        """Запросить ярость варвара"""
         print(f'Заряд ярости = {self.rage}')
 
     def description_person(self):
