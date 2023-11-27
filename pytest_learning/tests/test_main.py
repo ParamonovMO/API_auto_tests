@@ -1,10 +1,5 @@
 import pytest
 
-@pytest.fixture() #действие до
-def auth():
-    print('Вход в систему выполнен')
-
-
 def test_sending_mail_1(auth):
     print('Первое письмо отправлено')
 
