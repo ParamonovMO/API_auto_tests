@@ -105,9 +105,9 @@ class Test_new_location:
         print(result_delete.text)
         print("Статус код:", result_delete.status_code)
         assert 200 == result_delete.status_code
-        print("Успешно!!! Удаление новой локации прошло успешно")
+        print("Удаление локации прошло успешно")
         if result_delete.status_code != 200:
-            print("Провал!!! Запрос ошибочный")
+            print("Код ответа не 200")
         check_status = result_delete.json()
         check_status_info = check_status.get("status")
         print("Сообщение: ", check_status_info)
@@ -122,9 +122,9 @@ class Test_new_location:
         print(result_get.text)
         print("Статус код:", result_post.status_code)
         assert 404 == result_get.status_code
-        print("Проверка создания новой локации прошла успешно")
+        print("Место не найдено")
         if result_get.status_code != 404:
-            print("Провал!!! Запрос ошибочный")
+            print("Код ответа не 404")
         check_msg = result_get.json()
         check_msg_info = check_msg.get('msg')
         assert check_msg_info == "Get operation failed, looks like place_id  doesn't exists"
