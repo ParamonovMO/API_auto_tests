@@ -103,7 +103,7 @@ class Test_new_location:
         }
         result_delete = requests.delete(delete_url, json = json_for_delete_new_location)
         print(result_delete.text)
-        print("Статус код : " + str(result_delete.status_code))
+        print("Статус код:", result_delete.status_code)
         assert 200 == result_delete.status_code
         print("Успешно!!! Удаление новой локации прошло успешно")
         if result_delete.status_code != 200:
@@ -115,7 +115,21 @@ class Test_new_location:
         print("Сообщение верно")
         
         """Проверка удаления места"""
-        
+        get_resourse = '/maps/api/place/get/json'
+        get_url = base_url + get_resourse + key + '&place_id=' + place_id
+        print(get_url)
+        result_get = requests.get(get_url)
+        print(result_get.text)
+        print("Статус код:", result_post.status_code)
+        assert 404 == result_get.status_code
+        print("Проверка создания новой локации прошла успешно")
+        if result_get.status_code != 404:
+            print("Провал!!! Запрос ошибочный")
+        check_msg = result_get.json()
+        check_msg_info = check_msg.get('msg')
+        assert check_msg_info == "Get operation failed, looks like place_id  doesn't exists"
+        print('Сообщение верно')
 
+        print("Тестирование Test_new_location завершено успешно")
 new_place = Test_new_location()
 new_place.test_create_new_location()
