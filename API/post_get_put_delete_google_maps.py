@@ -1,9 +1,10 @@
 import requests
+import time
 
 class Test_new_location:
     """Работа с новой локацией"""
     def test_create_new_location(self):
-        """Создаение новой локации"""
+        """Создание новой локации"""
         
         base_url = 'https://rahulshettyacademy.com' #базовый урл
         post_resurce = '/maps/api/place/add/json' #ручка
@@ -112,6 +113,9 @@ class Test_new_location:
         print("Сообщение: ", check_status_info)
         assert check_status_info == "OK"
         print("Сообщение верно")
+        
+        """Проверка удаления места"""
+        
 
 new_place = Test_new_location()
 new_place.test_create_new_location()
