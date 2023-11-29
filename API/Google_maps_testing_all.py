@@ -1,5 +1,5 @@
 import requests
-import time
+
 
 class Test_new_location:
     """Работа с новой локацией"""
@@ -131,5 +131,7 @@ class Test_new_location:
         print('Сообщение верно')
 
         print("Тестирование Test_new_location завершено успешно")
+
+
 new_place = Test_new_location()
 new_place.test_create_new_location()
