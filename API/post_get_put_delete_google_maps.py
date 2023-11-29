@@ -57,7 +57,42 @@ class Test_new_location:
         if result_get.status_code != 200:
             print("Провал!!! Запрос ошибочный")
         
+        """Проверка изменения созданного места"""
+        put_resourse = '/maps/api/place/update/json'
+        key = '?key=qaclick123'
+        body_put_json = {
+            "place_id": place_id,
+            "address":"100 Lenina street, RU", 
+            "key":"qaclick123" 
+        }
+        put_url = base_url + put_resourse + key
+        print(put_url)
+        result_put = requests.put(put_url, json = body_put_json)
+        print(result_put.text)
+        assert 200 == result_put.status_code
+        print("Запрос на изменение умпешный")
+        if result_put.status_code != 200:
+            print("Провал!!! Запрос ошибочный")
         
+        check_msg = result_put.json()
+        check_put_msg = check_msg.get('msg')
+        assert check_put_msg == 'Address successfully updated'
+        print('Адрес изменен')
+        
+        """Проверка изменения новой локации"""
+
+        result_get = requests.get(get_url)
+        print(result_get.text)
+        print("Статус код:", result_get.status_code)
+        assert 200 == result_get.status_code
+        print("Успешно!!! Проверка изменения новой локации прошла успешно")
+        if result_get.status_code != 200:
+            print("Провал!!! Запрос ошибочный")
+        check_address = result_get.json()
+        check_address_info = check_address.get("address")
+        print("Сообщение:", check_address_info)
+        assert check_address_info == "100 Lenina street, RU"
+        print("Сообщение верно")
         
 new_place = Test_new_location()
 new_place.test_create_new_location()
